@@ -1,0 +1,1 @@
+https://api.thingspeak.com/channels/485550/feeds.json?results=1
