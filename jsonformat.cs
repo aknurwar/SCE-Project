@@ -15,6 +15,7 @@ public class JSONContainer
     // Start is called before the first frame update
     void Start()
     {
+        //http://192.168.1.7:8080/get_machine_data
         Parser2();
      //   StartCoroutine(SendWebRequest());
     }
