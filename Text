@@ -1,2 +1,35 @@
 
-We utilize both virtual reality and augmented reality technologies to create an immersive experience for one of the largest oil and gas exploration companies. They have developed an ROV-like device called the AD Spicerack and want to showcase its functionality and appearance. Traditional audiovisual presentations have proven challenging for marketing teams to effectively convey its features. Hence, we've developed VR and AR solutions compatible with HTC, Oculus, and Microsoft HoloLens. These tools empower marketing personnel and delegates to immerse themselves in firsthand experiences, leading to positive business outcomes.
+using UnityEngine.XR.Interaction.Toolkit;
+using Cognitive3D;
+public class RecordGrabEvent : MonoBehaviour
+{
+    private XRGrabInteractable grabInteractable;
+    private DynamicObject dynamicObject;
+    void Start() 
+    {
+        grabInteractable =GetComponent<XRGrabInteractable>();
+        dynamicObject = GetComponent<DynamicObject>();
+        grabInteractable.selectEntered.AddListener(RecordGrab);
+        grabInteractable.selectExited.AddListener(RecordRelease);
+
+    }
+    public void RecordGrab(BaseInteractionEventArgs args)
+    {
+        dynamicObject.BeginEngagement("Grabbing");// Write Anaything
+    }
+    public void RecordRelease(BaseInteractionEventArgs args)
+    {
+        dynamicObject.EndEngagement("Grabbing");// Write Anaything
+    }
+
+}
+using Cognitive3D;
+public class RecordCustomEvent : MonoBehaviour
+{
+    public string eventName;
+    public void WriteEvent()
+    {
+        CustomEvent customEvent= new CustomEvent(eventName);
+        customEvent.Send();
+    }
+}
